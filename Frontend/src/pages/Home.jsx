@@ -34,7 +34,7 @@ export function Home() {
                 {/* Date Section */}
                 <div className='flex justify-between items-center my-1.5 bg-white w-10/12 lg:w-8/12 p-2 rounded shadow'>
                     <ArrowBackIosIcon />
-                    <div>June 2024</div>
+                    <div className='font-bold'>June 2024</div>
                     <ArrowForwardIosIcon />
                 </div>
 

@@ -1,5 +1,6 @@
 import DeleteIcon from '@mui/icons-material/Delete';
 import Details from "./details";
+import EditIcon from '@mui/icons-material/Edit';
 
 export function Item(){
 
