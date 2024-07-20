@@ -1,6 +1,22 @@
+import React from 'react';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+
 import { Navbar } from "../components/Navbar";
+import { Chart } from '../components/Chart';
+
+const data01 = [
+    { name: "Group A", value: 400 },
+    { name: "Group B", value: 300 },
+    { name: "Group C", value: 300 },
+    { name: "Group D", value: 200 },
+    { name: "Group E", value: 278 },
+    { name: "Group F", value: 189 }
+];
+
+// Custom label formatter functions
+const incomeLabelFormatter = ({ name, value }) => `${name}: ${value}`;
+const expenseLabelFormatter = ({ name, value }) => `${name}: ${value}`;
 
 export function Home() {
     return (
@@ -11,13 +27,44 @@ export function Home() {
             </div>
 
             {/* Main content */}
-            <div className="flex flex-col justify-center items-center w-full mt-14">
-                <div className='flex justify-around items-center my-1.5 bg-white w-6/12 p-2 rounded shadow'>
+            <div className="flex flex-col justify-center items-center w-full mt-16">
+                {/* Date Section */}
+                <div className='flex justify-between items-center my-1.5 bg-white w-10/12 lg:w-8/12 p-2 rounded shadow'>
                     <ArrowBackIosIcon />
                     <div>June 2024</div>
                     <ArrowForwardIosIcon />
                 </div>
+
+                {/* Chart Section */}
+                <div className="flex justify-between items-center w-10/12 lg:w-8/12 bg-neutral-200 p-4 space-x-4">
+                    <div className="flex flex-col items-center bg-neutral-200 p-4 w-1/2">
+                        <Chart 
+                            chartdata={data01} 
+                            colorCombination={false} 
+                            labelFormatter={incomeLabelFormatter} 
+                            
+                        />
+                        <div className="text-green-500 text-center font-bold mt-2 p-2 bg-green-300 w-full">
+                            INCOME: ${36860}
+                        </div>
+                    </div>
+                    <div className="flex flex-col items-center bg-neutral-200 p-4 w-1/2">
+                        <Chart 
+                            chartdata={data01} 
+                            colorCombination={true} 
+                            labelFormatter={expenseLabelFormatter} 
+                           
+                        />
+                        <div className="text-red-500 text-center font-bold mt-2 p-2 bg-red-300 w-full">
+                            EXPENSE: ${12236}
+                        </div>
+                    </div>
+                </div>
+
+              
             </div>
+
+            <div></div>
         </div>
-    )
+    );
 }
