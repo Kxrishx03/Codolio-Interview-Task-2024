@@ -7,20 +7,20 @@ export function SearchBar() {
                 <input
                     type="text"
                     placeholder="Search by Title"
-                    className='flex-grow border-none outline-none'
+                    className='flex-grow border-none outline-none bg-transparent '
                 />
                 <SearchIcon />
             </div>
             
-            <select className="p-2 rounded border w-2/12 ml-2">
+            <select className="p-2 rounded border bg-white w-2/12 ml-2">
                 <option value="">Type</option>
                 {/* Add more options here */}
             </select>
-            <select className="p-2 rounded border w-2/12 ml-2">
+            <select className="p-2 rounded border bg-white w-2/12 ml-2">
                 <option value="">Category</option>
                 {/* Add more options here */}
             </select>
-            <select className="p-2 rounded border w-2/12 ml-2">
+            <select className="p-2 rounded border bg-white w-2/12 ml-2">
                 <option value="">Currency</option>
                 {/* Add more options here */}
             </select>
