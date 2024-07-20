@@ -7,7 +7,7 @@ export function SearchBar() {
                 <input
                     type="text"
                     placeholder="Search by Title"
-                    className='flex-grow border-none outline-none'
+                    className='flex-grow border-none outline-none bg-transparent '
                 />
                 <SearchIcon />
             </div>

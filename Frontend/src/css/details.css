@@ -1,0 +1,8 @@
+.translateIncome{
+    transform: translateX(-50%);
+    transition: 1s ease;
+}
+
+.detail-body{
+    transition: .5s ease;
+}
