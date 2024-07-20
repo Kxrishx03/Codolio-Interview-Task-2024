@@ -5,6 +5,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { Navbar } from "../components/Navbar";
 import { Chart } from '../components/Chart';
 import { SearchBar } from '../components/SearchBar';
+import { Transcation } from '../components/Transaction';
 
 const data01 = [
     { name: "Group A", value: 400 },
@@ -18,6 +19,7 @@ const data01 = [
 // Custom label formatter functions
 const incomeLabelFormatter = ({ name, value }) => `${name}: ${value}`;
 const expenseLabelFormatter = ({ name, value }) => `${name}: ${value}`;
+
 
 export function Home() {
     return (
@@ -45,7 +47,7 @@ export function Home() {
                             labelFormatter={incomeLabelFormatter} 
                             
                         />
-                        <div className="text-green-500 text-center font-bold mt-2 p-2 bg-green-300 w-full shadow">
+                        <div className="text-green-500 text-center justify-between font-bold mt-2 p-2  bg-green-300 w-full shadow">
                             INCOME: ${36860}
                         </div>
                     </div>
@@ -63,10 +65,16 @@ export function Home() {
 
                 </div>
 
-               <SearchBar />
-                
-
+               
             </div>
+            <div className='flex flex-col justify-center items-center bg-neutral-200 w-full  h-full'>
+            <SearchBar />
+            </div>
+            
+            <div className='flex flex-col justify-center items-center bg-neutral-200 w-full  h-full'>
+                <Transcation />
+            </div>
+            
 
           
         </div>

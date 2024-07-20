@@ -2,7 +2,7 @@ import { Home } from "./pages/Home";
 
 export default function App() {
   return (
-      <div>
+      <div className="bg-neutral-200">
          <Home />
       </div>
   )

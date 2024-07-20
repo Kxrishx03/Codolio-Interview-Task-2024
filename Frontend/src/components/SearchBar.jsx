@@ -2,7 +2,7 @@ import SearchIcon from '@mui/icons-material/Search';
 
 export function SearchBar() {
     return (
-        <div className='flex items-center bg-neutral-200 w-10/12 lg:w-8/12 p-2 rounded mt-4'>
+        <div className='flex items-center bg-neutral-200 w-10/12 lg:w-8/12  rounded mt-4'>
             <div className='flex items-center w-6/12 rounded border bg-white p-2'>
                 <input
                     type="text"
