@@ -23,7 +23,7 @@ const expenseLabelFormatter = ({ name, value }) => `${name}: ${value}`;
 
 export function Home() {
     return (
-        <div className="flex flex-col items-center bg-neutral-200 w-screen ">
+        <div className="flex flex-col items-center bg-neutral-200 w-[100%] ">
             {/* Navbar component fixed to top with padding */}
             <div className="fixed top-0 left-0 w-full z-10 p-2 bg-white shadow">
                 <Navbar />
