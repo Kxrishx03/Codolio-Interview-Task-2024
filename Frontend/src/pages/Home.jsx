@@ -5,7 +5,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { Navbar } from "../components/Navbar";
 import { Chart } from '../components/Chart';
 import { SearchBar } from '../components/SearchBar';
-import { Transcation } from '../components/Transaction';
+import { Transaction } from '../components/Transaction';
 
 const data01 = [
     { name: "Group A", value: 400 },
@@ -23,7 +23,7 @@ const expenseLabelFormatter = ({ name, value }) => `${name}: ${value}`;
 
 export function Home() {
     return (
-        <div className="flex flex-col items-center bg-neutral-200 w-screen h-screen">
+        <div className="flex flex-col items-center bg-neutral-200 w-screen ">
             {/* Navbar component fixed to top with padding */}
             <div className="fixed top-0 left-0 w-full z-10 p-2 bg-white shadow">
                 <Navbar />
@@ -67,12 +67,17 @@ export function Home() {
 
                
             </div>
-            <div className='flex flex-col justify-center items-center bg-neutral-200 w-full  h-full'>
+            <div className='flex flex-col justify-center items-center bg-neutral-200 w-full  '>
             <SearchBar />
             </div>
             
             <div className='flex flex-col justify-center items-center bg-neutral-200 w-full  h-full'>
-                <Transcation />
+                <Transaction />
+                <Transaction />
+                <Transaction />
+                <Transaction />
+                <Transaction />
+                <Transaction />
             </div>
             
 
