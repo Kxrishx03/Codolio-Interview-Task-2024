@@ -1,14 +1,20 @@
-import React, { useState } from 'react'
-import '../css/details.css'
+import React, { useState,useEffect } from 'react'
+import '../css/details.css';
+// import { useSelector,useDispatch } from 'react-redux';
+// import { addTransaction, setLoading, setError, setSuccess } from "../redux/transactionSlice"
 
 export default function Details() {
+  
     const [income, setIncome] = useState({
         date : null,
         title : '',
         notes : '',
         category : '',
         amount : 0
-    })
+    });
+
+
+  
     const [flag1, setFlag1] = useState(false)
     function handleIncome(e){
       setIncome((prev)=>({

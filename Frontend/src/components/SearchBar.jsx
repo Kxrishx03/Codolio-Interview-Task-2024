@@ -12,12 +12,12 @@ export function SearchBar() {
                 <SearchIcon />
             </div>
             
-            <select className="p-2 rounded border w-2/12 ml-2">
+            <select className="p-2 bg-white rounded border w-2/12 ml-2">
                 <option value="type" selected>Type</option>
                 <option value="income">Income</option>
                 <option value="expense">Expense</option>
             </select>
-            <select className="p-2 rounded border w-2/12 ml-2">
+            <select className="p-2 bg-white rounded border w-2/12 ml-2">
                 <option value="Category" selected>Category</option>
                 <option value="Healthcare">Healthcare</option>
                 <option value="Shopping">Shopping</option>
@@ -28,7 +28,7 @@ export function SearchBar() {
                 <option value="Education">Education</option>
                 <option value="Transportaion">Transportaion</option>
             </select>
-            <select className="p-2 rounded border w-2/12 ml-2">
+            <select className="p-2 bg-white rounded border w-2/12 ml-2">
                 <option value="Currency" selected>Currency</option>
                 <option value="USD">US Dollar (USD)</option>
                 <option value="INR">Indian Rupee (INR)</option>
