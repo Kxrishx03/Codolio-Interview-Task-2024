@@ -4,6 +4,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 import { Navbar } from "../components/Navbar";
 import { Chart } from '../components/Chart';
+import { SearchBar } from '../components/SearchBar';
 
 const data01 = [
     { name: "Group A", value: 400 },
@@ -27,7 +28,7 @@ export function Home() {
             </div>
 
             {/* Main content */}
-            <div className="flex flex-col justify-center items-center w-full mt-16">
+            <div className="flex flex-col justify-center items-center bg-neutral-200  w-full mt-16 h-full">
                 {/* Date Section */}
                 <div className='flex justify-between items-center my-1.5 bg-white w-10/12 lg:w-8/12 p-2 rounded shadow'>
                     <ArrowBackIosIcon />
@@ -36,7 +37,7 @@ export function Home() {
                 </div>
 
                 {/* Chart Section */}
-                <div className="flex justify-between items-center w-10/12 lg:w-8/12 bg-neutral-200 p-4 space-x-4">
+                <div className="flex justify-between items-center w-10/12 lg:w-8/12 bg-neutral-200 p-2 space-x-4">
                     <div className="flex flex-col items-center bg-neutral-200 p-4 w-1/2">
                         <Chart 
                             chartdata={data01} 
@@ -44,7 +45,7 @@ export function Home() {
                             labelFormatter={incomeLabelFormatter} 
                             
                         />
-                        <div className="text-green-500 text-center font-bold mt-2 p-2 bg-green-300 w-full">
+                        <div className="text-green-500 text-center font-bold mt-2 p-2 bg-green-300 w-full shadow">
                             INCOME: ${36860}
                         </div>
                     </div>
@@ -55,16 +56,19 @@ export function Home() {
                             labelFormatter={expenseLabelFormatter} 
                            
                         />
-                        <div className="text-red-500 text-center font-bold mt-2 p-2 bg-red-300 w-full">
+                        <div className="text-red-500 text-center font-bold mt-2 p-2 bg-red-300 w-full shadow">
                             EXPENSE: ${12236}
                         </div>
                     </div>
+
                 </div>
 
-              
+               <SearchBar />
+                
+
             </div>
 
-            <div></div>
+          
         </div>
     );
 }
