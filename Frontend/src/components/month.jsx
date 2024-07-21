@@ -14,6 +14,14 @@ function Month({ sample }) {
     const expenseCategories = new Map();
     const incomeCategories = new Map();
 
+    useEffect(() => {
+        setFilteredMonth(sample);
+    }, [sample]);
+
+    useEffect(()=>{
+       console.log('changed')
+    }, [filteredMonth])
+
     function filterByType() {
         const filtered = filteredMonth.map(month => 
             month.filter(transaction => transaction.type.toLowerCase() === filtervalues.type.toLowerCase())
@@ -80,10 +88,6 @@ function Month({ sample }) {
 
     const incomeLabelFormatter = ({ name, value }) => `${capitalizeLabel(name)}: ${value}`;
     const expenseLabelFormatter = ({ name, value }) => `${capitalizeLabel(name)}: ${value}`;
-
-    useEffect(() => {
-        console.log(filteredMonth);
-    }, [filteredMonth]);
 
     return (
         <>
