@@ -15,11 +15,12 @@ export function Home() {
         "JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE",
         "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"
     ];
-   
+
     const currentYearArray = groupedTransactions[yIndex] || [];
     const currentYear = currentYearArray.length ? currentYearArray[0][0][0].year : '';
     const currentMonthArray = currentYearArray[mIndex] || [];
-    const currentMonth = currentMonthArray.length ? currentMonthArray[0][0].month : '';
+    const currentMonth = currentMonthArray.length ? currentMonthArray[0][0].month : '';
+
     function handleNextMonth() {
         setMIndex(prev => {
             if (prev === currentYearArray.length - 1) {
@@ -45,22 +46,22 @@ export function Home() {
             return prev - 1;
         });
     }
-      
+
     const prevDisabled = yIndex === 0 && mIndex === 0;
     const nextDisabled = yIndex === groupedTransactions.length - 1 && mIndex === groupedTransactions[yIndex].length - 1;
- 
+
     return (
-        <div className={`flex flex-col items-center w-[100%] ${lightTheme ? 'bg-neutral-200 text-black' : 'bg-gray-800 text-white'}`} >
+        <div className={`flex flex-col items-center w-full ${lightTheme ? 'bg-neutral-200 text-black' : 'bg-gray-800 text-white'}`}>
 
             {/* Main content */}
-            <div className={`flex justify-between items-center mt-12 w-10/12 lg:w-8/12 p-2 rounded shadow ${lightTheme ? 'bg-slate-50 text-black' : 'bg-gray-700 text-white'} `}>
+            <div className={`flex justify-between items-center mt-12 w-11/12 sm:w-10/12 lg:w-8/12 p-2 rounded shadow ${lightTheme ? 'bg-slate-50 text-black' : 'bg-gray-700 text-white'}`}>
                 <button disabled={prevDisabled} onClick={handlePrevMonth}>
-                    <ArrowBackIosIcon /> 
+                    <ArrowBackIosIcon />
                 </button>
 
-                <div className='font-bold'>{monthNames[currentMonth-1]} {currentYear}</div>
+                <div className='font-bold text-xs sm:text-sm md:text-lg'>{monthNames[currentMonth - 1]} {currentYear}</div>
                 <button disabled={nextDisabled} onClick={handleNextMonth}>
-                    <ArrowForwardIosIcon  />
+                    <ArrowForwardIosIcon />
                 </button>
             </div>
 

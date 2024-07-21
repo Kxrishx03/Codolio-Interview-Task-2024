@@ -15,8 +15,8 @@ export function SearchBar({ filtervalues, setFilterValues, filterByType }) {
     console.log(filtervalues);
 
     return (
-        <div className={`flex items-center w-10/12 lg:w-8/12 rounded mt-4 ${lightTheme ? 'bg-neutral-200 text-black' : 'bg-gray-800 text-white'}`}>
-            <div className={`flex items-center w-6/12 rounded border ${lightTheme ? 'bg-white text-black' : 'bg-gray-700 text-white'} p-2`}>
+        <div className={`flex flex-col sm:flex-row items-center w-11/12 sm:w-10/12 lg:w-8/12 rounded mt-4 ${lightTheme ? 'bg-neutral-200 text-black' : 'bg-gray-800 text-white'}`}>
+            <div className={`flex items-center w-full sm:w-6/12 rounded border ${lightTheme ? 'bg-white text-black' : 'bg-gray-700 text-white'} p-2 mb-2 sm:mb-0 sm:mr-2`}>
                 <input
                     type="text"
                     placeholder="Search by Title"
@@ -25,14 +25,14 @@ export function SearchBar({ filtervalues, setFilterValues, filterByType }) {
                 <SearchIcon />
             </div>
 
-            <button onClick={filterByType} className="ml-2 h-10 p-2 rounded bg-blue-500 text-white">Filter</button>
+            <button onClick={filterByType} className="w-full sm:w-auto h-10 p-2 rounded bg-blue-500 text-white mb-2 sm:mb-0 sm:mr-2">Filter</button>
 
-            <select onChange={(e) => handleFilter(e)} value={filtervalues.type} name='type' className={`p-2 rounded border w-2/12 ml-2 ${lightTheme ? 'bg-white text-black' : 'bg-gray-700 text-white'}`}>
+            <select onChange={(e) => handleFilter(e)} value={filtervalues.type} name='type' className={`p-2 rounded border w-full sm:w-auto mb-2 sm:mb-0 sm:mr-2 ${lightTheme ? 'bg-white text-black' : 'bg-gray-700 text-white'}`}>
                 <option value="">Type</option>
                 <option value="income">Income</option>
                 <option value="expense">Expense</option>
             </select>
-            <select onChange={(e) => handleFilter(e)} value={filtervalues.category} name='category' className={`p-2 rounded border w-2/12 ml-2 ${lightTheme ? 'bg-white text-black' : 'bg-gray-700 text-white'}`}>
+            <select onChange={(e) => handleFilter(e)} value={filtervalues.category} name='category' className={`p-2 rounded border w-full sm:w-auto mb-2 sm:mb-0 sm:mr-2 ${lightTheme ? 'bg-white text-black' : 'bg-gray-700 text-white'}`}>
                 <option value="">Category</option>
                 <option value="Healthcare">Healthcare</option>
                 <option value="Shopping">Shopping</option>
@@ -43,7 +43,7 @@ export function SearchBar({ filtervalues, setFilterValues, filterByType }) {
                 <option value="Education">Education</option>
                 <option value="Transportation">Transportation</option>
             </select>
-            <select onChange={(e) => handleFilter(e)} value={filtervalues.currency} name='currency' className={`p-2 rounded border w-2/12 ml-2 ${lightTheme ? 'bg-white text-black' : 'bg-gray-700 text-white'}`}>
+            <select onChange={(e) => handleFilter(e)} value={filtervalues.currency} name='currency' className={`p-2 rounded border w-full sm:w-auto ${lightTheme ? 'bg-white text-black' : 'bg-gray-700 text-white'}`}>
                 <option value="">Currency</option>
                 <option value="USD">USD</option>
                 <option value="INR">INR</option>
