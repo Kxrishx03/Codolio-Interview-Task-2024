@@ -3,16 +3,15 @@ import SearchIcon from '@mui/icons-material/Search';
 import { useSelector } from 'react-redux';
 
 
-export function SearchBar({filtervalues, setFilterValues, filterByType}) {
+export function SearchBar({filtervalues, setFilterValues, applyFilter, resetFilter}) {
     const lightTheme = useSelector((state) => state.themeKey);
     function handleFilter(e) {
         setFilterValues((prev) => ({
             ...prev,
             [e.target.name]: e.target.value
         }))
+        console.log(filtervalues)
     }
-
-    console.log(filtervalues)
     return (
         <div className={`flex items-center w-10/12 lg:w-8/12  rounded mt-4 ${lightTheme ? 'bg-neutral-200 text-black' : 'bg-gray800 text-white'} `}>
         <div className={`flex items-center w-6/12 rounded border ${lightTheme ? 'bg-white text-black' : 'bg-gray-700 text-white'} p-2`}>
@@ -24,13 +23,14 @@ export function SearchBar({filtervalues, setFilterValues, filterByType}) {
             <SearchIcon />
         </div>
 
-        <button onClick={filterByType} >apply filter</button>
-        <select onClick={(e) => handleFilter(e)} value={filtervalues.type} name='type' className={`p-2 rounded border w-2/12 ml-2 ${lightTheme ? 'bg-white text-black' : 'bg-gray-700 text-white'}`}>
-            <option value="">Type</option>
+        <button onClick={applyFilter} >apply</button>
+        <button onClick={resetFilter} >reset</button>
+        <select onChange={(e) => handleFilter(e)} value={filtervalues.type} name='type' className={`p-2 rounded border w-2/12 ml-2 ${lightTheme ? 'bg-white text-black' : 'bg-gray-700 text-white'}`}>
+            <option value="" selected>Type</option>
             <option value="income">Income</option>
             <option value="expense">Expense</option>
         </select>
-        <select onClick={(e) => handleFilter(e)} value={filtervalues.category} name='category' className={`p-2 rounded border w-2/12 ml-2 ${lightTheme ? 'bg-white text-black' : 'bg-gray-700 text-white'}`}>
+        <select onChange={(e) => handleFilter(e)} value={filtervalues.category} name='category' className={`p-2 rounded border w-2/12 ml-2 ${lightTheme ? 'bg-white text-black' : 'bg-gray-700 text-white'}`}>
             <option value="Category" selected>Category</option>
             <option value="Healthcare">Healthcare</option>
             <option value="Shopping">Shopping</option>
@@ -41,7 +41,7 @@ export function SearchBar({filtervalues, setFilterValues, filterByType}) {
             <option value="Education">Education</option>
             <option value="Transportaion">Transportaion</option>
         </select>
-        <select onClick={(e) => handleFilter(e)} value={filtervalues.currency} name='currency' className={`p-2 rounded border w-2/12 ml-2 ${lightTheme ? 'bg-white text-black' : 'bg-gray-700 text-white'}`}>
+        <select onChange={(e) => handleFilter(e)} value={filtervalues.currency} name='currency' className={`p-2 rounded border w-2/12 ml-2 ${lightTheme ? 'bg-white text-black' : 'bg-gray-700 text-white'}`}>
             <option value="Currency" selected>Currency</option>
             <option value="USD">US Dollar (USD)</option>
             <option value="INR">Indian Rupee (INR)</option>
