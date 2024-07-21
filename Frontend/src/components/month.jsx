@@ -120,7 +120,7 @@ function Month({ sample }) {
                 <SearchBar filtervalues={filtervalues} setFilterValues={setFilterValues} />
             </div>
 
-            <div className={`flex flex-col justify-center items-center w-full h-full${lightTheme ? 'bg-neutral-200 text-black' : 'bg-gray-700 text-white'} `}>
+            <div className={`flex flex-col justify-center items-center w-full h-full${lightTheme ? 'bg-neutral-200 text-black' : 'bg-gray-800 text-white'} `}>
                 {filteredMonth.map((day, i) => (
                     <Transaction key={i} day={day} />
                 ))}
