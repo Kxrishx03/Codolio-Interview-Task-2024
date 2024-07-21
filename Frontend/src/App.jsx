@@ -9,7 +9,7 @@ export default function App() {
 
     <div className={`${lightTheme ? 'bg-slate-50 text-black' : 'bg-gray-800 text-white'}`}>
         <Navbar />
-      <Home />
+        <Home />
     </div>
   )
 }
