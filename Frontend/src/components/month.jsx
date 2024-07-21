@@ -100,8 +100,8 @@ function Month({ sample }) {
                             colorCombination={false}
                             labelFormatter={incomeLabelFormatter}
                         />
-                        <div className="text-green-500 text-center font-bold mt-2 p-2 bg-green-300 w-full shadow">
-                            INCOME: ${income}
+                        <div className="text-green-500 flex justify-between text-center font-bold mt-2 p-2 text-xl bg-green-300 w-full shadow">
+                            <div className='ml-2'>INCOME:</div> <div className='mr-2'>${income}</div>
                         </div>
                     </div>
                     <div className={`flex flex-col items-center ${lightTheme ? 'bg-neutral-200 text-black' : 'bg-gray-800 text-white'} p-4 w-full sm:w-1/2`}>
@@ -110,8 +110,8 @@ function Month({ sample }) {
                             colorCombination={true}
                             labelFormatter={expenseLabelFormatter}
                         />
-                        <div className="text-red-500 text-center font-bold mt-2 p-2 bg-red-300 w-full shadow text-xl">
-                            EXPENSE: ${expense}
+                        <div className="text-red-500 flex justify-between text-center font-bold mt-2 p-2 bg-red-300 w-full shadow text-xl">
+                           <div className='ml-2'> EXPENSE:</div> <div className='mr-2'> ${expense}</div>
                         </div>
                     </div>
                 </div>

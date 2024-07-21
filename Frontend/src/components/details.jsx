@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import '../css/details.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { addTransaction, setLoading, setError, setSuccess } from "../redux/transactionSlice";
+import { sampleTransactions } from '../utils/sampleData';
 
 
 export default function Details({item}) {
@@ -69,7 +70,10 @@ export default function Details({item}) {
         fetchData();
     }, [income, dispatch]);
     
-    console.log(transaction);
+    console.log(transaction)
+    // console.log(transaction);
+    // sampleTransactions.push({transaction});
+    // console.log(sampleTransactions);
 
     return (
         <>

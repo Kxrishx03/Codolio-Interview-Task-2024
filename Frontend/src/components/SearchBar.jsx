@@ -24,15 +24,15 @@ export function SearchBar({filtervalues, setFilterValues, applyFilter, resetFilt
             <SearchIcon />
         </div>
 
-        <button onClick={applyFilter} className='h-10 bg-blue-500 mx-1 px-1 rounded' >Apply</button>
-        <button onClick={resetFilter} className='h-10 bg-blue-500 mx-1 px-1 rounded' >Reset</button>
-        <select onChange={(e) => handleFilter(e)} value={filtervalues.type} name='type' className={`p-2 rounded border w-2/12 ml-2 ${lightTheme ? 'bg-white text-black' : 'bg-gray-700 text-white'}`}>
+        <button onClick={applyFilter} className='h-10 bg-blue-400 mx-1 px-1.5 rounded' >Apply</button>
+        <button onClick={resetFilter} className='h-10 bg-blue-400 mx-1 px-1.5 rounded' >Reset</button>
+        <select onChange={(e) => handleFilter(e)} value={filtervalues.type} name='type' className={`p-2 rounded border w-2/12 ml-1 ${lightTheme ? 'bg-white text-black' : 'bg-gray-700 text-white'}`}>
             <option value="" selected>Type</option>
             <option value="income">Income</option>
             <option value="expense">Expense</option>
         </select>
-        <select onChange={(e) => handleFilter(e)} value={filtervalues.category} name='category' className={`p-2 rounded border w-2/12 ml-2 ${lightTheme ? 'bg-white text-black' : 'bg-gray-700 text-white'}`}>
-            <option value="Category" selected>Category</option>
+        <select onChange={(e) => handleFilter(e)} value={filtervalues.category} name='category' className={`p-2 rounded border w-2/12 ml-1 ${lightTheme ? 'bg-white text-black' : 'bg-gray-700 text-white'}`}>
+            <option value="" selected>Category</option>
             <option value="Healthcare">Healthcare</option>
             <option value="Shopping">Shopping</option>
             <option value="Food">Food</option>
@@ -42,8 +42,8 @@ export function SearchBar({filtervalues, setFilterValues, applyFilter, resetFilt
             <option value="Education">Education</option>
             <option value="Transportaion">Transportaion</option>
         </select>
-        <select onChange={(e) => handleFilter(e)} value={filtervalues.currency} name='currency' className={`p-2 rounded border w-2/12 ml-2 ${lightTheme ? 'bg-white text-black' : 'bg-gray-700 text-white'}`}>
-            <option value="Currency" selected>Currency</option>
+        <select onChange={(e) => handleFilter(e)} value={filtervalues.currency} name='currency' className={`p-2 rounded border w-2/12 ml-1 ${lightTheme ? 'bg-white text-black' : 'bg-gray-700 text-white'}`}>
+            <option value="" selected>Currency</option>
             <option value="USD">USD</option>
             <option value="INR">INR</option>
             <option value="JPY">JPY</option>
