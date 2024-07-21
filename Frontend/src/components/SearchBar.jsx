@@ -24,8 +24,8 @@ export function SearchBar({filtervalues, setFilterValues, applyFilter, resetFilt
             <SearchIcon />
         </div>
 
-        <button onClick={applyFilter} className='h-10 bg-blue-500 mx-2 px-2 rounded' >Apply</button>
-        <button onClick={resetFilter} className='h-10 bg-blue-500 mx-2 px-2 rounded' >Reset</button>
+        <button onClick={applyFilter} className='h-10 bg-blue-500 mx-1 px-1 rounded' >Apply</button>
+        <button onClick={resetFilter} className='h-10 bg-blue-500 mx-1 px-1 rounded' >Reset</button>
         <select onChange={(e) => handleFilter(e)} value={filtervalues.type} name='type' className={`p-2 rounded border w-2/12 ml-2 ${lightTheme ? 'bg-white text-black' : 'bg-gray-700 text-white'}`}>
             <option value="" selected>Type</option>
             <option value="income">Income</option>
