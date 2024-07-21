@@ -61,4 +61,9 @@ export const sampleTransactions = [
   
 export  const groupedTransactions = groupTransactionsByDate(transactionsWithDateComponents);
   
+<<<<<<< HEAD
 //   console.log(JSON.stringify(nestedGroupedTransactions, null, 2));
+=======
+//   console.log(JSON.stringify(nestedGroupedTransactions, null, 2));
+  
+>>>>>>> ad451ad74b437d60a08589683a9bd2d5c1a36c9d

@@ -23,3 +23,4 @@ function getDayOfWeek(dateTimeStr) {
 // Example usage
 const dateTimeStr = "2024-07-21 15:00:00";
 const dayOfWeek = getDayOfWeek(dateTimeStr);
+console.log(`The day of the week for ${dateTimeStr} is ${dayOfWeek}.`);
