@@ -57,12 +57,12 @@ export function Transaction({day}) {
             </div>
 
             {/* Modal */}
-            <dialog id="my_modal_1" className="modal">
+            <dialog id="my_modal_1" className={`${lightTheme ? 'bg-neutral-200 text-black' : 'bg-gray-800 text-white'}`}>
                 <div className={`modal-box ${lightTheme ? 'bg-white text-black' : 'bg-gray-800 text-white'}`}>
                     <Details />
                     <div className="modal-action">
-                        <form method="dialog">
-                            <button className="btn">Close</button>
+                        <form method="dialog" className={`${lightTheme ? 'bg-neutral-200 text-black' : 'bg-gray-800 text-white'}`}>
+                            <button className={`${lightTheme ? 'bg-neutral-200 text-black' : 'bg-gray-800 text-white'} btn` }>Close</button>
                         </form>
                     </div>
                 </div>
