@@ -50,7 +50,7 @@ export function Home() {
         <div className={`flex flex-col items-center w-[100%] ${lightTheme ? 'bg-neutral-200 text-black' : 'bg-gray-800 text-white'}`} >
 
             {/* Main content */}
-            <div className={`flex justify-between items-center my-1.5 w-10/12 lg:w-8/12 p-2 rounded shadow ${lightTheme ? 'bg-slate-50 text-black' : 'bg-gray-700 text-white'} `}>
+            <div className={`flex justify-between items-center mt-12 w-10/12 lg:w-8/12 p-2 rounded shadow ${lightTheme ? 'bg-slate-50 text-black' : 'bg-gray-700 text-white'} `}>
                 <button disabled={prevDisabled} onClick={handlePrevMonth}>
                     <ArrowBackIosIcon /> 
                 </button>

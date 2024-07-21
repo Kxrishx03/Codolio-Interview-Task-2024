@@ -24,7 +24,7 @@ export function Transaction({day}) {
     return (
         <>
             <div className={`flex flex-col w-10/12 lg:w-8/12 mb-8 ${lightTheme ? 'bg-white text-black' : 'bg-gray-700 text-white'} `}>
-                <div className={`flex justify-between items-center p-2 rounded-t-md shadow-md `}>
+                <div className={`flex justify-between items-center p-2 px-5 rounded-t-md shadow-md `}>
                     <div className="font-bold flex items-center">
                         {day[0].day}
                         <span className={`${lightTheme ? 'bg-white text-black' : 'bg-gray-700 text-white'} mx-2 px-2 py-1 rounded text-sm font-bold`}>{dayWeek}</span>

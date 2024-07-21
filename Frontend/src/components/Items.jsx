@@ -15,7 +15,7 @@ export function Item({category, note, amount, type}){
         <>
             <div  className='flex justify-between m-1'>
             <div className='flex align-center'>
-                <h3 className='bg-green-500 pl-2 pt-1 pr-2 pb-1 rounded font-bold'>{category}</h3>
+                <h3 className='bg-green-500 pl-2 pt-1 pr-2 w-[100px] text-center pb-1 rounded font-bold'>{category}</h3>
                 <p className='mx-4 text-center font-bold flex items-center'>{note}</p>
             </div>
             <div className='flex items-center'>

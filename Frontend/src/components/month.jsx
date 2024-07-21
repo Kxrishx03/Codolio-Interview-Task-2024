@@ -88,7 +88,7 @@ function Month({ sample }) {
 
     return (
         <>
-            <div className={`flex flex-col justify-center items-center w-full mt-16 h-full ${lightTheme ? 'bg-neutral-200 text-black' : 'bg-gray-800 text-white'} `}>
+            <div className={`flex flex-col justify-center items-center w-full h-full ${lightTheme ? 'bg-neutral-200 text-black' : 'bg-gray-800 text-white'} `}>
                 {/* Date Section */}
 
                 {/* Chart Section */}
