@@ -27,7 +27,7 @@ export function Home() {
                     setYIndex(yIndex + 1);
                     return 0;
                 }
-                return prev; // Stay at the last month if no more years available
+                return prev; 
             }
             return prev + 1;
         });
