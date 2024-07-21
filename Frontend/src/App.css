@@ -7,26 +7,26 @@ body {
   box-sizing: border-box;
 }
 
-@media screen and (max-width: 900px) {
-  .charts {
+@media screen and (max-width : 900px) {
+  .charts{
     flex-direction: column !important;
   }
-  .search {
+  .search{
     flex-direction: column;
   }
-  .s-right {
-    margin: 10px 0;
+  .s-right{
+    margin: 10px 0px;
   }
-  .f-type {
-    margin: 0 !important;
+  .f-type{
+    margin: 0% !important;
   }
-  .filter-s {
-    margin-left: 4px !important;
+  .filter-s{
+    margin-left:4px !important ;
   }
 }
+@media screen and (max-width : 750px) {
 
-@media screen and (max-width: 750px) {
-  .trans {
+  .trans{
     display: none !important;
   }
 }
