@@ -3,7 +3,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import { useSelector } from 'react-redux';
 
 
-export function SearchBar({filtervalues, setFilterValues}) {
+export function SearchBar({filtervalues, setFilterValues, filterByType}) {
     const lightTheme = useSelector((state) => state.themeKey);
     function handleFilter(e) {
         setFilterValues((prev) => ({
@@ -24,8 +24,9 @@ export function SearchBar({filtervalues, setFilterValues}) {
             <SearchIcon />
         </div>
 
+        <button onClick={filterByType} >apply filter</button>
         <select onClick={(e) => handleFilter(e)} value={filtervalues.type} name='type' className={`p-2 rounded border w-2/12 ml-2 ${lightTheme ? 'bg-white text-black' : 'bg-gray-700 text-white'}`}>
-            {/* <option value="type" selected>Type</option> */}
+            <option value="">Type</option>
             <option value="income">Income</option>
             <option value="expense">Expense</option>
         </select>
