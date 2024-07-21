@@ -9,6 +9,7 @@ export default function Details() {
         category : '',
         amount : 0
     })
+    
     const [flag1, setFlag1] = useState(false)
     function handleIncome(e){
       setIncome((prev)=>({

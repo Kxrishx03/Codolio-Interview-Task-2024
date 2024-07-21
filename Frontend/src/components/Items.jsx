@@ -2,7 +2,9 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Details from "./details";
 import EditIcon from '@mui/icons-material/Edit';
 
-export function Item(){
+export function Item({category, note, amount, type}){
+
+    console.log(amount)
 
     function handleItem(){
         document.getElementById('my_modal_1').showModal()
@@ -12,11 +14,11 @@ export function Item(){
         <>
             <div onClick={handleItem} className=' cursor-pointer flex justify-between m-1 hover:bg-gray-300 transition ease duration-500'>
             <div className='flex align-center'>
-                <h3 className='bg-green-500 pl-2 pt-1 pr-2 pb-1 rounded font-bold'>Food</h3>
-                <p className='mx-4 text-center font-bold flex items-center'>Lunch with Friends</p>
+                <h3 className='bg-green-500 pl-2 pt-1 pr-2 pb-1 rounded font-bold'>{category}</h3>
+                <p className='mx-4 text-center font-bold flex items-center'>{note}</p>
             </div>
             <div className='flex items-center'>
-                <p className='font-bold text-red-500 mr-1 flex items-center'>1500</p>
+                <p className={`font-bold ${type === 'Income' ? 'text-green-500' : 'text-red-500' } mr-1 flex items-center`}>{amount}</p>
                 <DeleteIcon className='text-red-500 font-bold  ' />
             </div>
             </div>

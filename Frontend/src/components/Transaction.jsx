@@ -1,25 +1,41 @@
 import Details from "./details";
 import { Item } from "./Items";
 
-export function Transaction() {
+export function Transaction({day}) {
+
+    // const dayWeek = dayOfWeek(day[0].dateTime)
+    const dayWeek = 'mon'
+
+    let dayIncome = 0
+    let dayExpense = 0
+
+    for(let i=0; i < day.length; i++){
+        if(day[i].type == 'Income'){
+            dayIncome+= day[i].amount
+        }
+        else if(day[i].type == 'Expense'){
+            dayExpense+= day[i].amount
+        }
+    }
+
     return (
         <>
             <div className="flex flex-col w-10/12 lg:w-8/12 mt-2">
                 <div className="flex justify-between items-center bg-white p-2 rounded-t-md shadow-md">
                     <div className="font-bold flex items-center">
-                        10
-                        <span className="bg-neutral-200 mx-2 px-2 py-1 rounded text-sm font-bold">WED</span>
+                        {day[0].day}
+                        <span className="bg-neutral-200 mx-2 px-2 py-1 rounded text-sm font-bold">{dayWeek}</span>
                         <button onClick={() => document.getElementById('my_modal_1').showModal()} className=" px-4 border-2">add</button>
                     </div>
                     <div className="flex items-center">
-                        <span className="font-bold text-green-600 mr-2">0</span>
-                        <span className="font-bold text-red-600">1500</span>
+                        <span className="font-bold text-green-600 mr-2"> {dayIncome}</span>
+                        <span className="font-bold text-red-600">{dayExpense}</span>
                     </div>
                 </div>
                 <div className="flex flex-col justify-evenly bg-white mt-1 mb-4 p-2 rounded-b-md shadow-md">
-                    <Item />
-                    <Item />
-                    <Item />
+                    {day.map((item, i)=>(
+                        <Item key={i} category={item.category} amount={item.amount} note={item.note} type={item.type} />
+                    ))}
                 </div>
             </div>
 
