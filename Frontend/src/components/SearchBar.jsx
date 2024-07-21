@@ -7,7 +7,7 @@ export function SearchBar() {
 
     return (
         <div className={`flex items-center w-10/12 lg:w-8/12 rounded mt-4 ${lightTheme ? 'bg-neutral-200' : 'bg-gray-800'}`}>
-            <div className={`flex items-center w-6/12 rounded border-none p-2 ${lightTheme ? 'bg-white' : 'bg-gray-600'}`}>
+            <div className={`flex items-center w-6/12 rounded border-none p-2 ${lightTheme ? 'bg-white' : 'bg-gray-700'}`}>
                 <input
                     type="text"
                     placeholder="Search by Title"
@@ -16,12 +16,12 @@ export function SearchBar() {
                 <SearchIcon className={lightTheme ? 'text-black' : 'text-white'} />
             </div>
             
-            <select className={`p-2 rounded border-none w-2/12 ml-2 ${lightTheme ? 'bg-white text-black' : 'bg-gray-600 text-white'}`}>
+            <select className={`p-2 rounded border-none w-2/12 ml-2 ${lightTheme ? 'bg-white text-black' : 'bg-gray-700 text-white'}`}>
                 <option value="type" selected>Type</option>
                 <option value="income">Income</option>
                 <option value="expense">Expense</option>
             </select>
-            <select className={`p-2 rounded border-none w-2/12 ml-2 ${lightTheme ? 'bg-white text-black' : 'bg-gray-600 text-white'}`}>
+            <select className={`p-2 rounded border-none w-2/12 ml-2 ${lightTheme ? 'bg-white text-black' : 'bg-gray-700 text-white'}`}>
                 <option value="Category" selected>Category</option>
                 <option value="Healthcare">Healthcare</option>
                 <option value="Shopping">Shopping</option>
@@ -32,13 +32,13 @@ export function SearchBar() {
                 <option value="Education">Education</option>
                 <option value="Transportation">Transportation</option>
             </select>
-            <select className={`p-2 rounded border-none w-2/12 ml-2 ${lightTheme ? 'bg-white text-black' : 'bg-gray-600 text-white'}`}>
+            <select className={`p-2 rounded border-none w-2/12 ml-2 ${lightTheme ? 'bg-white text-black' : 'bg-gray-700 text-white'}`}>
                 <option value="Currency" selected>Currency</option>
-                <option value="USD">US Dollar (USD)</option>
-                <option value="INR">Indian Rupee (INR)</option>
-                <option value="JPY">Japanese Yen (JPY)</option>
-                <option value="EUR">Euro (EUR)</option>
-                <option value="GBP">British Pound (GBP)</option>
+                <option value="USD">USD</option>
+                <option value="INR">INR</option>
+                <option value="JPY">JPY</option>
+                <option value="EUR">EUR</option>
+                <option value="GBP">GBP</option>
             </select>
         </div>
     );
