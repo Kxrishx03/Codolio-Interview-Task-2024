@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { Chart } from '../components/Chart';
 import { SearchBar } from '../components/SearchBar';
 import SearchIcon from '@mui/icons-material/Search';
+import { useSelector } from 'react-redux';
+
 
 import { Transaction } from './Transaction';
 
 function Month({ sample }) {
-
+    const lightTheme = useSelector((state) => state.themeKey);
     console.log(sample)
     const [filteredMonth, setFilteredMonth] = useState(sample)
     let expense = 0;
@@ -86,12 +88,12 @@ function Month({ sample }) {
 
     return (
         <>
-            <div className="flex flex-col justify-center items-center bg-neutral-200 w-full mt-16 h-full">
+            <div className={`flex flex-col justify-center items-center w-full mt-16 h-full ${lightTheme ? 'bg-neutral-200 text-black' : 'bg-gray-800 text-white'} `}>
                 {/* Date Section */}
 
                 {/* Chart Section */}
-                <div className="flex justify-between items-center w-10/12 lg:w-8/12 bg-neutral-200 p-2 space-x-4">
-                    <div className="flex flex-col items-center bg-neutral-200 p-4 w-1/2">
+                <div className={`flex justify-between items-center w-10/12 lg:w-8/12 ${lightTheme ? 'bg-neutral-200 text-black' : 'bg-gray-800 text-white'} p-2 space-x-4`}>
+                    <div className={`flex flex-col items-center${lightTheme ? 'bg-neutral-200 text-black' : 'bg-gray-800 text-white'} p-4 w-1/2`}>
                         <Chart
                             chartdata={incomeData}
                             colorCombination={false}
@@ -101,7 +103,7 @@ function Month({ sample }) {
                             INCOME: ${income}
                         </div>
                     </div>
-                    <div className="flex flex-col items-center bg-neutral-200 p-4 w-1/2">
+                    <div className={`flex flex-col items-center${lightTheme ? 'bg-neutral-200 text-black' : 'bg-gray-800 text-white'} p-4 w-1/2`}>
                         <Chart
                             chartdata={expenseData}
                             colorCombination={true}
@@ -114,11 +116,11 @@ function Month({ sample }) {
                 </div>
             </div>
 
-            <div className='flex flex-col justify-center items-center bg-neutral-200 w-full'>
+            <div className={`flex flex-col justify-center mb-8 items-center w-full ${lightTheme ? 'bg-neutral-200 text-black' : 'bg-gray-800 text-white'} `}>
                 <SearchBar filtervalues={filtervalues} setFilterValues={setFilterValues} />
             </div>
 
-            <div className='flex flex-col justify-center items-center bg-neutral-200 w-full h-full'>
+            <div className={`flex flex-col justify-center items-center w-full h-full${lightTheme ? 'bg-neutral-200 text-black' : 'bg-gray-700 text-white'} `}>
                 {filteredMonth.map((day, i) => (
                     <Transaction key={i} day={day} />
                 ))}

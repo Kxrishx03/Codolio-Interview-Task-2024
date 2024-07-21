@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { sampleTransactions } from './sampleData';
+import { sampleTransactions } from '../utils/sampleData';
 
 // Initial state of the transactions
 const initialState = {

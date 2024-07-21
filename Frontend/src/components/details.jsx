@@ -4,7 +4,7 @@ import { useSelector,useDispatch } from 'react-redux';
 import { addTransaction, setLoading, setError, setSuccess } from "../redux/transactionSlice";
 
 export default function Details() {
-   
+    const lightTheme = useSelector((state) => state.themeKey);
     const { transaction } = useSelector((state) => state.transaction);
     const dispatch = useDispatch();
     
@@ -14,15 +14,8 @@ export default function Details() {
         notes : '',
         category : '',
         amount : 0
-<<<<<<< HEAD
     })
     
-=======
-    });
-
-
-  
->>>>>>> f1fcd86623053bcdf995087ed1ef0d308722651b
     const [flag1, setFlag1] = useState(false)
     function handleIncome(e){
       setIncome((prev)=>({

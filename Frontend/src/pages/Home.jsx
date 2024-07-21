@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import Month from '../components/month';
-import { groupedTransactions } from '../redux/sampleData';
+import { groupedTransactions } from '../utils/sampleData';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { useSelector } from 'react-redux';
 
 export function Home() {
+    const lightTheme = useSelector((state) => state.themeKey);
     const [mIndex, setMIndex] = useState(0);
     const [yIndex, setYIndex] = useState(0);
 
@@ -12,14 +14,8 @@ export function Home() {
     
     const currentYearArray = groupedTransactions[yIndex] || [];
     const currentYear = currentYearArray.length ? currentYearArray[0][0][0].year : '';
-    console.log(currentYear);
-
     const currentMonthArray = currentYearArray[mIndex] || [];
-    console.log(currentMonthArray.length);
-    console.log(currentMonthArray);
-
     const currentMonth = currentMonthArray.length ? currentMonthArray[0][0].month : '';
-    console.log(currentMonth);
 
     function handleNextMonth() {
         setMIndex(prev => {
@@ -51,10 +47,10 @@ export function Home() {
     const nextDisabled = yIndex === groupedTransactions.length - 1 && mIndex === groupedTransactions[yIndex].length - 1;
 
     return (
-        <div className="flex flex-col items-center bg-neutral-200 w-[100%] ">
+        <div className={`flex flex-col items-center w-[100%] ${lightTheme ? 'bg-neutral-200 text-black' : 'bg-gray-800 text-white'}`} >
 
             {/* Main content */}
-            <div className='flex justify-between items-center my-1.5 bg-white w-10/12 lg:w-8/12 p-2 rounded shadow'>
+            <div className={`flex justify-between items-center my-1.5 w-10/12 lg:w-8/12 p-2 rounded shadow ${lightTheme ? 'bg-slate-50 text-black' : 'bg-gray-700 text-white'} `}>
                 <button disabled={prevDisabled} onClick={handlePrevMonth}>
                     <ArrowBackIosIcon /> 
                 </button>
