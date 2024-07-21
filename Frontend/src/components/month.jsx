@@ -6,60 +6,50 @@ import { Transaction } from './Transaction';
 
 function Month({ sample }) {
     const lightTheme = useSelector((state) => state.themeKey);
-    const [filteredMonth, setFilteredMonth] = useState(sample);
+    const [filteredMonth, setFilteredMonth] = useState(sample)
+    console.log(filteredMonth)
     let expense = 0;
     let income = 0;
     const expenseCategories = new Map();
     const incomeCategories = new Map();
-    const [filtervalues, setFilterValues] = useState({
-        category: '',
-        currency: '',
-        type: ''
-    });
-
-    useEffect(() => {
-        filterByType();
-    }, [filtervalues.type]);
-
-    useEffect(() => {
-        filterByCategory();
-    }, [filtervalues.category]);
-
-    useEffect(() => {
-        filterByCurrency();
-    }, [filtervalues.currency]);
+    const [filtervalues, setFilterValues] = useState({})
 
     function filterByType() {
-        if (filtervalues.type.length === 0) {
-            setFilteredMonth(sample);
-        } else {
-            const filtered = sample.map(month =>
-                month.filter(transaction => transaction.type.toLowerCase() === filtervalues.type.toLowerCase())
-            ).filter(month => month.length > 0);
-            setFilteredMonth(filtered);
-        }
+        console.log(filtervalues.type)
+        const filtered = filteredMonth.map(month => 
+            month.filter(transaction => transaction.type.toLowerCase() === filtervalues.type.toLowerCase())
+        ).filter(month => month.length > 0);
+        setFilteredMonth(filtered);
+        console.log(filtered);
     }
 
     function filterByCategory() {
-        if (filtervalues.category.length === 0) {
-            setFilteredMonth(sample);
-        } else {
-            const filtered = sample.map(month =>
-                month.filter(transaction => transaction.category.toLowerCase() === filtervalues.category.toLowerCase())
-            ).filter(month => month.length > 0);
-            setFilteredMonth(filtered);
-        }
+        console.log(filtervalues.type)
+        const filtered = filteredMonth.map(month => 
+            month.filter(transaction => transaction.category.toLowerCase() === filtervalues.category.toLowerCase())
+        ).filter(month => month.length > 0);
+        setFilteredMonth(filtered);
     }
 
     function filterByCurrency() {
-        if (filtervalues.currency.length === 0) {
-            setFilteredMonth(sample);
-        } else {
-            const filtered = sample.map(month =>
-                month.filter(transaction => transaction.currency.toLowerCase() === filtervalues.currency.toLowerCase())
-            ).filter(month => month.length > 0);
-            setFilteredMonth(filtered);
-        }
+        console.log(filtervalues.type)
+        const filtered = filteredMonth.map(month => 
+            month.filter(transaction => transaction.currency.toLowerCase() === filtervalues.currency.toLowerCase())
+        ).filter(month => month.length > 0);
+        setFilteredMonth(filtered);
+    }
+    function resetFilter(){
+        setFilteredMonth(sample)
+        setFilterValues({
+            category: '',
+            currency: '',
+            type: ''
+        })
+    }
+    function applyFilter(){
+        if(filtervalues.type.length > 0) filterByType()
+        if(filtervalues.category.length > 0) filterByCategory()
+        if(filtervalues.currency.length > 0) filterByCurrency()
     }
 
     for (let i = 0; i < sample.length; i++) {
@@ -88,12 +78,20 @@ function Month({ sample }) {
     const expenseData = Array.from(expenseCategories, ([name, value]) => ({ name, value }));
     const incomeData = Array.from(incomeCategories, ([name, value]) => ({ name, value }));
 
+    console.log('Expense Categories:', expenseCategories);
+    console.log('Income Categories:', incomeCategories);
+
     const incomeLabelFormatter = ({ name, value }) => `${name}: ${value}`;
     const expenseLabelFormatter = ({ name, value }) => `${name}: ${value}`;
+
+    useEffect(()=>{
+        console.log(filteredMonth)
+    }, [filteredMonth])
 
     return (
         <>
             <div className={`flex flex-col justify-center items-center w-full h-full ${lightTheme ? 'bg-neutral-200 text-black' : 'bg-gray-800 text-white'} `}>
+
                 {/* Chart Section */}
                 <div className={`flex flex-col sm:flex-row justify-between items-center w-11/12 sm:w-10/12 lg:w-8/12 ${lightTheme ? 'bg-neutral-200 text-black' : 'bg-gray-800 text-white'} p-2 space-x-0 sm:space-x-4 space-y-4 sm:space-y-0`}>
                     <div className={`flex flex-col items-center ${lightTheme ? 'bg-neutral-200 text-black' : 'bg-gray-800 text-white'} p-4 w-full sm:w-1/2`}>
@@ -120,13 +118,13 @@ function Month({ sample }) {
             </div>
 
             <div className={`flex flex-col justify-center mb-8 items-center w-full ${lightTheme ? 'bg-neutral-200 text-black' : 'bg-gray-800 text-white'} `}>
-                <SearchBar filtervalues={filtervalues} setFilterValues={setFilterValues} />
+                <SearchBar resetFilter={resetFilter} filtervalues={filtervalues} setFilterValues={setFilterValues} applyFilter={applyFilter} />
             </div>
 
-            <div className={`flex flex-col justify-center items-center w-full h-full ${lightTheme ? 'bg-neutral-200 text-black' : 'bg-gray-700 text-white'} `}>
-                {filteredMonth.length > 0 && filteredMonth.map((day, i) => (
+            <div className={`flex flex-col justify-center items-center w-full h-full${lightTheme ? 'bg-neutral-200 text-black' : 'bg-gray-700 text-white'} `}>
+                {filteredMonth.length> 0 ? filteredMonth.map((day, i) => (
                     <Transaction key={i} day={day} />
-                ))}
+                )) : 'nothing to show..' }
             </div>
         </>
     );
