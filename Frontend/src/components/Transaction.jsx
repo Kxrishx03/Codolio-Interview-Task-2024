@@ -37,7 +37,7 @@ export function Transaction({day}) {
 
     return (
         <>
-            <div className={`flex flex-col w-10/12 lg:w-8/12 mb-8 rounded-t-md ${lightTheme ? 'bg-white text-black' : 'bg-gray-800 text-white'} `}>
+            <div className={`flex flex-col w-10/12 lg:w-8/12 mb-8 rounded-t-md ${lightTheme ? 'bg-neutral-200 text-black' : 'bg-gray-800 text-white'} `}>
                 <div className={`flex justify-between items-center p-2 px-5 rounded-t-md shadow-md ${lightTheme ? 'bg-white text-black' : 'bg-gray-700 text-white'} `}>
                     <div className="font-bold flex items-center">
                         {day[0].day}
