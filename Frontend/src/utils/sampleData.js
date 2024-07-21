@@ -11,8 +11,6 @@ export const sampleTransactions = [
     { dateTime: "2023-12-20 20:52:47", amount: 4400, type: "Expense", category: "travel", title: "Insurance", currency: "EUR", note: "Transaction related to Food" },
     { dateTime: "2023-12-20 20:52:47", amount: 10000, type: "Expense", category: "game", title: "Insurance", currency: "EUR", note: "Transaction related to Food" }
   ];
-
-  sampleTransactions.sort((a, b)=> new Date(a.dateTime) - new Date(b.dateTime) )
   
   // Function to extract date components and include them in each transaction
   function addDateComponents(transactions) {
@@ -50,16 +48,15 @@ export const sampleTransactions = [
       grouped[year][month][day].push(transaction);
     });
   
-    return Object.keys(grouped).map(year => 
-      Object.keys(grouped[year]).map(month => 
-        Object.keys(grouped[year][month]).map(day => 
-          grouped[year][month][day]
-        )
+    return Object.keys(grouped).sort().map(year =>
+      Object.keys(grouped[year]).sort().map(month =>
+          Object.keys(grouped[year][month]).reverse().map(day =>
+              grouped[year][month][day]
+          )
       )
-    );
+  );
   }
   
 export  const groupedTransactions = groupTransactionsByDate(transactionsWithDateComponents);
-  
-//   console.log(JSON.stringify(nestedGroupedTransactions, null, 2));
+console.log(groupedTransactions)
   

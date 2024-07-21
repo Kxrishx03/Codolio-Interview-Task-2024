@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Chart } from '../components/Chart';
 import { SearchBar } from '../components/SearchBar';
 import SearchIcon from '@mui/icons-material/Search';
@@ -24,30 +24,32 @@ function Month({ sample }) {
     console.log(filtervalues)
 
     function filterByType() {
-        const filtered = sample.map(month =>
-            month.map(day =>
-                day.filter(transaction => transaction.type === filtervalues.type)
-            )
-        );
+        console.log(filtervalues.type)
+        if(filtervalues.type.length === 0){
+            setFilteredMonth(sample)
+        }
+        else if(filtervalues.type.length > 0){
+        const filtered = filteredMonth.map(month => 
+            month.filter(transaction => transaction.type.toLowerCase() === filtervalues.type.toLowerCase())
+        ).filter(month => month.length > 0);
         setFilteredMonth(filtered);
+       }
         console.log(filtered);
     }
 
     function filterByCategory() {
-        const filtered = filteredMonth.map(month =>
-            month.map(day =>
-                day.filter(transaction => transaction.type.toLowerCase() === filtervalues.type.toLowerCase())
-            )
-        );
+        console.log(filtervalues.type)
+        const filtered = filteredMonth.map(month => 
+            month.filter(transaction => transaction.type.toLowerCase() === filtervalues.category.toLowerCase())
+        ).filter(month => month.length > 0);
         setFilteredMonth(filtered);
         console.log(filtered);
     }
     function filterByCurrency() {
-        const filtered = filteredMonth.map(month =>
-            month.map(day =>
-                day.filter(transaction => transaction.type.toLowerCase() === filtervalues.type.toLowerCase())
-            )
-        );
+        console.log(filtervalues.type)
+        const filtered = filteredMonth.map(month => 
+            month.filter(transaction => transaction.type.toLowerCase() === filtervalues.currency.toLowerCase())
+        ).filter(month => month.length > 0);
         setFilteredMonth(filtered);
         console.log(filtered);
     }
@@ -86,6 +88,9 @@ function Month({ sample }) {
     const incomeLabelFormatter = ({ name, value }) => `${name}: ${value}`;
     const expenseLabelFormatter = ({ name, value }) => `${name}: ${value}`;
 
+    useEffect(()=>{
+    }, [filteredMonth])
+
     return (
         <>
             <div className={`flex flex-col justify-center items-center w-full h-full ${lightTheme ? 'bg-neutral-200 text-black' : 'bg-gray-800 text-white'} `}>
@@ -99,7 +104,7 @@ function Month({ sample }) {
                             colorCombination={false}
                             labelFormatter={incomeLabelFormatter}
                         />
-                        <div onClick={filterByType} className="text-green-500 text-center justify-between font-bold mt-2 p-2 bg-green-300 w-full shadow">
+                        <div className="text-green-500 text-center justify-between font-bold mt-2 p-2 bg-green-300 w-full shadow">
                             INCOME: ${income}
                         </div>
                     </div>
@@ -117,11 +122,11 @@ function Month({ sample }) {
             </div>
 
             <div className={`flex flex-col justify-center mb-8 items-center w-full ${lightTheme ? 'bg-neutral-200 text-black' : 'bg-gray-800 text-white'} `}>
-                <SearchBar filtervalues={filtervalues} setFilterValues={setFilterValues} />
+                <SearchBar filtervalues={filtervalues} setFilterValues={setFilterValues} filterByType={filterByType} />
             </div>
 
             <div className={`flex flex-col justify-center items-center w-full h-full${lightTheme ? 'bg-neutral-200 text-black' : 'bg-gray-700 text-white'} `}>
-                {filteredMonth.map((day, i) => (
+                { filteredMonth.length>0 && sample.map((day, i) => (
                     <Transaction key={i} day={day} />
                 ))}
             </div>
