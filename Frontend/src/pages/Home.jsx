@@ -11,7 +11,11 @@ export function Home() {
     const [yIndex, setYIndex] = useState(0);
 
     console.log(groupedTransactions);
- 
+   
+    const currentYearArray = groupedTransactions[yIndex] || [];
+    const currentYear = currentYearArray.length ? currentYearArray[0][0][0].year : '';
+    const currentMonthArray = currentYearArray[mIndex] || [];
+    const currentMonth = currentMonthArray.length ? currentMonthArray[0][0].month : '';
     function handleNextMonth() {
         setMIndex(prev => {
             if (prev === currentYearArray.length - 1) {
