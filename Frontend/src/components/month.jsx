@@ -126,7 +126,7 @@ function Month({ sample }) {
             </div>
 
             <div className={`flex flex-col justify-center items-center w-full h-full${lightTheme ? 'bg-neutral-200 text-black' : 'bg-gray-700 text-white'} `}>
-                { filteredMonth.length>0 && sample.map((day, i) => (
+                { filteredMonth.length>0 && filteredMonth.map((day, i) => (
                     <Transaction key={i} day={day} />
                 ))}
             </div>
