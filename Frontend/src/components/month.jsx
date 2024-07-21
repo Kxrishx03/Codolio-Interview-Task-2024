@@ -146,7 +146,7 @@ function Month({ sample }) {
                 <SearchBar data={data} setData={setData} resetFilter={resetFilter} filtervalues={filtervalues} setFilterValues={setFilterValues} applyFilter={applyFilter} />
             </div>
 
-            <div className={`flex flex-col justify-center items-center w-full h-full ${lightTheme ? 'bg-neutral-200 text-black' : 'bg-gray-700 text-white'}`}>
+            <div className={`flex flex-col justify-center items-center w-full h-full ${lightTheme ? 'bg-neutral-200 text-black' : 'bg-gray-800 text-white'}`}>
                 {filteredMonth.length > 0 ? filteredMonth.map((day, i) => (
                     <Transaction key={i} day={day} />
                 )) : 'nothing to show..'}
