@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 
 export function SearchBar({filtervalues, setFilterValues, applyFilter, resetFilter}) {
     const lightTheme = useSelector((state) => state.themeKey);
+
     function handleFilter(e) {
         setFilterValues((prev) => ({
             ...prev,

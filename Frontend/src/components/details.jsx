@@ -1,137 +1,137 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
 import '../css/details.css';
-import { useSelector,useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { addTransaction, setLoading, setError, setSuccess } from "../redux/transactionSlice";
+
 
 export default function Details() {
     const lightTheme = useSelector((state) => state.themeKey);
-    const { transaction } = useSelector((state) => state.transaction);
     const dispatch = useDispatch();
+    const { transaction } = useSelector((state) => state.transaction);
+    console.log(transaction);
     
     const [income, setIncome] = useState({
-        date : null,
-        title : '',
-        notes : '',
-        category : '',
-        amount : 0
-    })
+        date: null,
+        title: '',
+        notes: '',
+        category: '',
+        amount: 0
+    });
     
-    const [flag1, setFlag1] = useState(false)
-    function handleIncome(e){
-      setIncome((prev)=>({
-        ...prev,
-        [e.target.name] : e.target.value
-      }));
-      
+    const [flag1, setFlag1] = useState(false);
+
+    function handleIncome(e) {
+        setIncome((prev) => ({
+            ...prev,
+            [e.target.name]: e.target.value
+        }));
     }
 
-    function handleIncomeSave(e){
+    function handleIncomeSave(e) {
         e.preventDefault();
-        console.log(income)
-    }
-    function handleExpenseSave(e){
-        e.preventDefault();
-        console.log(income)
+        console.log(income);
     }
 
-    function handleIncomeBtn(){
-        if(flag1){
-            setFlag1(false)
-        }
+    function handleExpenseSave(e) {
+        e.preventDefault();
+        console.log(income);
     }
-    function handleExpenseBtn(){
-        if(!flag1){
-            setFlag1(true)
+
+    function handleIncomeBtn() {
+        if (flag1) {
+            setFlag1(false);
         }
     }
 
+    function handleExpenseBtn() {
+        if (!flag1) {
+            setFlag1(true);
+        }
+    }
 
     useEffect(() => {
         const fetchData = () => {
-            try {  
-            dispatch(setLoading());
-            const transactionRes = income;
-            dispatch(addTransaction(transactionRes));
-            dispatch(setSuccess());
-            }  catch (err){
+            try {
+                dispatch(setLoading());
+                const transactionRes = income;
+                dispatch(addTransaction(transactionRes));
+                dispatch(setSuccess());
+            } catch (err) {
                 dispatch(setError(err.message));
             }
         };
         fetchData();
     }, [income, dispatch]);
-
-   
+    
+    console.log(transaction);
 
     return (
         <>
-            <div className="details w-[100%] overflow-hidden ">
-                <div className="detail-title flex w-full justify-evenly p-6">
-                    <div className=' cursor-pointer' onClick={handleIncomeBtn} >Income</div>
-                    <div className=' cursor-pointer' onClick={handleExpenseBtn} >Expense</div>
+            <div className={`details w-full h-full overflow-hidden ${lightTheme ? 'bg-neutral-200 text-black' : 'bg-gray-800 text-white'}`}>
+                <div className="detail-title flex w-full justify-evenly ">
+                    <div className="cursor-pointer w-1/2 h-full bg-green-300 text-green-600 font-bold text-xl p-4 text-center" onClick={handleIncomeBtn}>INCOME</div>
+                    <div className="cursor-pointer w-1/2 h-full bg-red-300 text-red-600 font-bold text-xl p-4 text-center" onClick={handleExpenseBtn}>EXPENSE</div>
                 </div>
-                <div className={`${flag1 && 'translateIncome' } detail-body flex w-[200%]`}>
-                    <form className={`${flag1 && 'translateIncome' } flex flex-col p-6 income w-[100%] `} onSubmit={handleIncomeSave}>
-                        <div className="date flex pb-3 w-[100%]">
-                            <label className=' w-[10vw]'>Date:</label>
-                            <input className=' border-2 border-black' name='date' type="date" value={handleIncome.date} onChange={(e) => handleIncome(e)} />
+                <div className={`${lightTheme ? 'bg-neutral-200 text-black' : 'bg-gray-800 text-white'} detail-body flex w-[200%] overflow-y-scroll scrollbar-hide ${flag1 && 'translateIncome'}`}>
+                    <form className={`flex flex-col p-6 income w-full ${flag1 && 'translateIncome'}`} onSubmit={handleIncomeSave}>
+                        <div className="date flex pb-3 w-full">
+                            <label className="w-[10vw]">Date:</label>
+                            <input className={`border-2 ${lightTheme ? 'bg-white border-black rounded' : 'bg-gray-800 border-white rounded'}`} name="date" type="date" value={income.date} onChange={handleIncome} />
                         </div>
-                        <div className="amount flex pb-3 w-[100%]">
-                            <label className=' w-[10vw]'>Amount:</label>
-                            <input className=' border-2 text-left border-black' name='amount' type='number' value={handleIncome.amount} onChange={(e) => handleIncome(e)} ></input>
+                        <div className="amount flex pb-3 w-full">
+                            <label className="w-[10vw]">Amount:</label>
+                            <input className={`border-2 text-left ${lightTheme ? 'bg-white border-black rounded' : 'bg-gray-800 border-white rounded'}`} name="amount" type="number" value={income.amount} onChange={handleIncome} />
                         </div>
-                        <div className="category flex pb-3 w-[100%]">
-                            <label className=' w-[10vw]'>Category:</label>
-                            <select name='category' value={handleIncome.category} onChange={(e) => handleIncome(e)} >
+                        <div className="category flex pb-3 w-full">
+                            <label className="w-[10vw]">Category:</label>
+                            <select className={`border-2 ${lightTheme ? 'bg-white border-black rounded' : 'bg-gray-800 border-white rounded'}`} name="category" value={income.category} onChange={handleIncome}>
                                 <option value="Salary">Salary</option>
                                 <option value="Food">Food</option>
                                 <option value="Transport">Transport</option>
                                 <option value="Other">Other</option>
                             </select>
                         </div>
-                        <div className="title flex pb-3 w-[100%]">
-                            <label className=' w-[10vw]'>Title:</label>
-                            <input className=' border-2 border-black' name='title' type="text" value={handleIncome.title} onChange={(e) => handleIncome(e)} />
+                        <div className="title flex pb-3 w-full">
+                            <label className="w-[10vw]">Title:</label>
+                            <input className={`border-2 ${lightTheme ? 'bg-white border-black rounded' : 'bg-gray-800 border-white rounded'}`} name="title" type="text" value={income.title} onChange={handleIncome} />
                         </div>
-                        <div className="notes pb-3 w-[100%] flex flex-col">
-                            <label className=' w-[10vw]'>Notes:</label>
-                            <textarea className=' border-2 border-black' name='notes' value={handleIncome.notes} onChange={(e) => handleIncome(e)} ></textarea>
+                        <div className="notes pb-3 w-full flex flex-col">
+                            <label className="w-[10vw]">Notes:</label>
+                            <textarea className={`border-2 ${lightTheme ? 'bg-white border-black rounded' : 'bg-gray-800 border-white rounded'}`} name="notes" value={income.notes} onChange={handleIncome}></textarea>
                         </div>
-
-                        <button type='submit' >save</button>
+                        <button className={`border-2 ${lightTheme ? 'border-black bg-neutral-200' : 'border-white bg-gray-800'}`} type="submit">Save</button>
                     </form>
 
-                    <form className={`flex flex-col p-6 income w-[100%] `} onSubmit={handleExpenseSave}>
-                        <div className="date flex pb-3 w-[100%]">
-                            <label className=' w-[10vw]'>Date:</label>
-                            <input className=' border-2 border-black' name='date' type="date" value={handleIncome.date} onChange={(e) => handleIncome(e)} />
+                    <form className="flex flex-col p-6 income w-full" onSubmit={handleExpenseSave}>
+                        <div className="date flex pb-3 w-full">
+                            <label className="w-[10vw]">Date:</label>
+                            <input className={`border-2 ${lightTheme ? 'bg-white border-black rounded' : 'bg-gray-800 border-white rounded'}`} name="date" type="date" value={income.date} onChange={handleIncome} />
                         </div>
-                        <div className="amount flex pb-3 w-[100%]">
-                            <label className=' w-[10vw]'>Amount:</label>
-                            <input className=' border-2 text-left border-black' name='amount' type='number' value={handleIncome.amount} onChange={(e) => handleIncome(e)} ></input>
+                        <div className="amount flex pb-3 w-full">
+                            <label className="w-[10vw]">Amount:</label>
+                            <input className={`border-2 text-left ${lightTheme ? 'bg-white border-black rounded' : 'bg-gray-800 border-white rounded'}`} name="amount" type="number" value={income.amount} onChange={handleIncome} />
                         </div>
-                        <div className="category flex pb-3 w-[100%]">
-                            <label className=' w-[10vw]'>Category:</label>
-                            <select name='category' value={handleIncome.category} onChange={(e) => handleIncome(e)} >
+                        <div className="category flex pb-3 w-full">
+                            <label className="w-[10vw]">Category:</label>
+                            <select className={`border-2 ${lightTheme ? 'bg-white border-black rounded' : 'bg-gray-800 border-white rounded'}`} name="category" value={income.category} onChange={handleIncome}>
                                 <option value="Salary">Salary</option>
                                 <option value="Food">Food</option>
                                 <option value="Transport">Transport</option>
                                 <option value="Other">Other</option>
                             </select>
                         </div>
-                        <div className="title flex pb-3 w-[100%]">
-                            <label className=' w-[10vw]'>Title:</label>
-                            <input className=' border-2 border-black' name='title' type="text" value={handleIncome.title} onChange={(e) => handleIncome(e)} />
+                        <div className="title flex pb-3 w-full">
+                            <label className="w-[10vw]">Title:</label>
+                            <input className={`border-2 ${lightTheme ? 'bg-white border-black rounded' : 'bg-gray-800 border-white rounded'}`} name="title" type="text" value={income.title} onChange={handleIncome} />
                         </div>
-                        <div className="notes pb-3 w-[100%] flex flex-col">
-                            <label className=' w-[10vw]'>Notes:</label>
-                            <textarea className=' border-2 border-black' name='notes' value={handleIncome.notes} onChange={(e) => handleIncome(e)} ></textarea>
+                        <div className="notes pb-3 w-full flex flex-col">
+                            <label className="w-[10vw]">Notes:</label>
+                            <textarea className={`border-2 ${lightTheme ? 'bg-white border-black rounded' : 'bg-gray-800 border-white rounded'}`} name="notes" value={income.notes} onChange={handleIncome}></textarea>
                         </div>
-
-                        <button type='submit' >save</button>
+                        <button className={`border-2 ${lightTheme ? 'border-black bg-neutral-200' : 'border-white bg-gray-800'}`} type="submit">Save</button>
                     </form>
-
                 </div>
             </div>
         </>
-    )
+    );
 }

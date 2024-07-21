@@ -11,6 +11,10 @@ export function Home() {
     const [yIndex, setYIndex] = useState(0);
 
     console.log(groupedTransactions);
+    const monthNames = [
+        "JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE",
+        "JULY", "AUGUST", "SEPTEMBER", "OCTOBER", "NOVEMBER", "DECEMBER"
+    ];
    
     const currentYearArray = groupedTransactions[yIndex] || [];
     const currentYear = currentYearArray.length ? currentYearArray[0][0][0].year : '';
@@ -23,7 +27,7 @@ export function Home() {
                     setYIndex(yIndex + 1);
                     return 0;
                 }
-                return prev; // Stay at the last month if no more years available
+                return prev; 
             }
             return prev + 1;
         });
@@ -36,7 +40,7 @@ export function Home() {
                     setYIndex(yIndex - 1);
                     return groupedTransactions[yIndex - 1].length - 1;
                 }
-                return prev; // Stay at the first month if no more previous years available
+                return prev; 
             }
             return prev - 1;
         });
@@ -54,7 +58,7 @@ export function Home() {
                     <ArrowBackIosIcon /> 
                 </button>
 
-                <div className='font-bold'>{currentMonth} {currentYear}</div>
+                <div className='font-bold'>{monthNames[currentMonth-1]} {currentYear}</div>
                 <button disabled={nextDisabled} onClick={handleNextMonth}>
                     <ArrowForwardIosIcon  />
                 </button>

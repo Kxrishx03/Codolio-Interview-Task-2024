@@ -102,6 +102,7 @@ function Month({ sample }) {
                             colorCombination={false}
                             labelFormatter={incomeLabelFormatter}
                         />
+
                         <div className="text-green-500 text-center justify-between font-bold mt-2 p-2 bg-green-300 w-full shadow">
                             INCOME: ${income}
                         </div>
@@ -112,8 +113,8 @@ function Month({ sample }) {
                             colorCombination={true}
                             labelFormatter={expenseLabelFormatter}
                         />
-                        <div className="text-red-500 text-center font-bold mt-2 p-2 bg-red-300 w-full shadow">
-                            EXPENSE: ${expense}
+                        <div className="text-red-600 flex justify-between text-center font-bold mt-2 p-2 bg-red-300 w-full shadow text-xl">
+                            <div  className='ml-4'>EXPENSE :</div> <div  className='mr-4'>${expense}</div>
                         </div>
                     </div>
                 </div>
