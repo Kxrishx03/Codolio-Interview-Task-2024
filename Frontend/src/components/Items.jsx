@@ -17,11 +17,11 @@ function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
-export function Item({category, note, amount, type}) {
+export function Item({item}) {
     const lightTheme = useSelector((state) => state.themeKey);
     const [colorMap, setColorMap] = useState({});
 
-    const capitalizedCategory = capitalizeFirstLetter(category);
+    const capitalizedCategory = capitalizeFirstLetter(item.category);
 
     useEffect(() => {
         // Check if the category already has an assigned color
@@ -33,32 +33,29 @@ export function Item({category, note, amount, type}) {
         }
     }, [capitalizedCategory, colorMap]);
 
-    function handleItem() {
-        document.getElementById('my_modal_1').showModal();
-    }
 
     return (
         <>
             <div className='flex justify-between m-1'>
                 <div className='flex align-center'>
                     <h3 className='pl-2 pt-1 pr-2 w-[100px] text-center pb-1 rounded font-bold' style={{ backgroundColor: colorMap[capitalizedCategory] }}>{capitalizedCategory}</h3>
-                    <p className='mx-4 text-center font-bold flex items-center'>{note}</p>
+                    <p className='mx-4 text-center font-bold flex items-center'>{item.note}</p>
                 </div>
                 <div className='flex items-center'>
-                    <p className={`font-bold ${type === 'Income' ? 'text-green-500' : 'text-red-500'} mr-1 flex items-center`}>{amount}</p>
-                    <EditIcon className='text-red-500 cursor-pointer mx-2' />
+                    <p className={`font-bold ${item.type === 'Income' ? 'text-green-500' : 'text-red-500'} mr-1 flex items-center`}>{item.amount}</p>
+                    <EditIcon onClick={() => document.getElementById('my_modal_2').showModal()} className='text-red-500 cursor-pointer mx-2' />
                     <DeleteIcon className='text-red-500 cursor-pointer mx-2' />
                 </div>
             </div>
 
             {/* modal */}
-            <dialog id="my_modal_1" className="modal">
-                <div className="modal-box">
-                    <Details />
+            <dialog id="my_modal_2" className={`${lightTheme ? '!bg-transparent text-black' : '!bg-transparent !text-white'}`}>
+                <div className={`modal-box ${lightTheme ? '!bg-neutral-200 !text-black' : '!bg-gray-800 !text-white'}`}>
+                    <form method="dialog">
+                        <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                    </form>
                     <div className="modal-action">
-                        <form method="dialog">
-                            <button className="btn">Close</button>
-                        </form>
+                        <Details item={item} />
                     </div>
                 </div>
             </dialog>

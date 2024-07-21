@@ -17,6 +17,14 @@ function Month({ sample }) {
     const incomeCategories = new Map();
     const [filtervalues, setFilterValues] = useState({})
 
+    useEffect(() => {
+        setFilteredMonth(sample);
+    }, [sample]);
+
+    useEffect(()=>{
+       console.log('changed')
+    }, [filteredMonth])
+
     function filterByType() {
         console.log(filtervalues.type)
         const filtered = filteredMonth.map(month => 
@@ -85,10 +93,6 @@ function Month({ sample }) {
 
     const incomeLabelFormatter = ({ name, value }) => `${name}: ${value}`;
     const expenseLabelFormatter = ({ name, value }) => `${name}: ${value}`;
-
-    useEffect(()=>{
-        console.log(filteredMonth)
-    }, [filteredMonth])
 
     return (
         <>
