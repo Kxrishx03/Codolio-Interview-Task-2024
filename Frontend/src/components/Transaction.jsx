@@ -4,7 +4,7 @@ import { Item } from "./Items";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { useSelector } from 'react-redux';
 
-export function Transaction({day}) {
+export function Transaction({ day }) {
     const lightTheme = useSelector((state) => state.themeKey);
 
     let dayIncome = 0;
@@ -15,23 +15,23 @@ export function Transaction({day}) {
         const dayOfWeek = date.getDay();
         const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
         return daysOfWeek[dayOfWeek];
-      }
-      
-      function addWeekdaysToData(data) {
+    }
+
+    function addWeekdaysToData(data) {
         return data.map(item => ({
-          ...item,
-          weekday: getWeekdayFromDateTime(item.dateTime)
+            ...item,
+            weekday: getWeekdayFromDateTime(item.dateTime)
         }));
-      }
-      
+    }
+
     const dataWithWeekdays = addWeekdaysToData(day);
-    
-    for(let i=0; i < day.length; i++){
-        if(day[i].type == 'Income'){
-            dayIncome+= day[i].amount
+
+    for (let i = 0; i < day.length; i++) {
+        if (day[i].type == 'Income') {
+            dayIncome += day[i].amount
         }
-        else if(day[i].type == 'Expense'){
-            dayExpense+= day[i].amount
+        else if (day[i].type == 'Expense') {
+            dayExpense += day[i].amount
         }
     }
 
@@ -50,23 +50,25 @@ export function Transaction({day}) {
                     </div>
                 </div>
                 <div className={`flex flex-col justify-evenly ${lightTheme ? 'bg-white text-black' : 'bg-gray-700 text-white'} mt-1 mb-4 p-2 rounded-b-md `}>
-                    {day.map((item, i)=>(
-                        <Item key={i} category={item.category} amount={item.amount} note={item.note} type={item.type} />
+                    {day.map((item, i) => (
+                        <Item key={i} item={item} />
                     ))}
                 </div>
             </div>
 
             {/* Modal */}
-            <dialog id="my_modal_1" className={`${lightTheme ? 'bg-neutral-200 text-black' : 'bg-gray-800 text-white'}`}>
-                <div className={`modal-box ${lightTheme ? 'bg-white text-black' : 'bg-gray-800 text-white'}`}>
-                    <Details />
-                    <div className={`modal-action  ${lightTheme ? 'bg-neutral-200 text-black' : 'bg-gray-600 text-white'}`}>
-                        <form method="dialog" className={`${lightTheme ? 'bg-neutral-200 text-black' : 'bg-gray-800 text-white'}`}>
-                            <button className={`${lightTheme ? 'bg-neutral-200 text-black' : 'bg-gray-800 text-white'} btn` }>Close</button>
-                        </form>
+            <dialog id="my_modal_1" className={`${lightTheme ? '!bg-transparent text-black' : '!bg-transparent !text-white'}`}>
+                <div className={`modal-box ${lightTheme ? '!bg-neutral-200 !text-black' : '!bg-gray-800 !text-white'}`}>
+                    <form method="dialog">
+                        <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                    </form>
+                    <div className="modal-action">
+                        <Details />
                     </div>
                 </div>
             </dialog>
+
+
         </>
     );
 }
