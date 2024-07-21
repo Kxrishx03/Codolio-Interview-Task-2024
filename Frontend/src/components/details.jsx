@@ -1,10 +1,13 @@
 import React, { useState,useEffect } from 'react'
 import '../css/details.css';
-// import { useSelector,useDispatch } from 'react-redux';
-// import { addTransaction, setLoading, setError, setSuccess } from "../redux/transactionSlice"
+import { useSelector,useDispatch } from 'react-redux';
+import { addTransaction, setLoading, setError, setSuccess } from "../redux/transactionSlice";
 
 export default function Details() {
-  
+   
+    const { transaction } = useSelector((state) => state.transaction);
+    const dispatch = useDispatch();
+    
     const [income, setIncome] = useState({
         date : null,
         title : '',
@@ -20,7 +23,8 @@ export default function Details() {
       setIncome((prev)=>({
         ...prev,
         [e.target.name] : e.target.value
-      }))
+      }));
+      
     }
 
     function handleIncomeSave(e){
@@ -42,6 +46,23 @@ export default function Details() {
             setFlag1(true)
         }
     }
+
+
+    useEffect(() => {
+        const fetchData = () => {
+            try {  
+            dispatch(setLoading());
+            const transactionRes = income;
+            dispatch(addTransaction(transactionRes));
+            dispatch(setSuccess());
+            }  catch (err){
+                dispatch(setError(err.message));
+            }
+        };
+        fetchData();
+    }, [income, dispatch]);
+
+   
 
     return (
         <>

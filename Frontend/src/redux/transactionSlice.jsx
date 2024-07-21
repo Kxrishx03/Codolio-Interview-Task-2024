@@ -11,22 +11,22 @@ const transactionSlice = createSlice({
   name: 'transactions',
   initialState,
   reducers: {
-    // Action to add a new transaction
+   
     addTransaction(state, action) {
       state.transactions.push(action.payload);
     },
-    // Action to set loading status
+  
     setLoading(state) {
-      state.status = 'loading';
+      state.status = false;
     },
-    // Action to set error status
+    
     setError(state, action) {
-      state.status = 'failed';
+      state.status = true;
       state.error = action.payload;
     },
-    // Action to set success status
+   
     setSuccess(state) {
-      state.status = 'succeeded';
+      state.status = true;
     },
   },
 });

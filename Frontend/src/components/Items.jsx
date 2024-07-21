@@ -12,8 +12,8 @@ export function Item(){
         <>
             <div  className='flex justify-between m-1'>
             <div className='flex align-center'>
-                <h3 className='bg-green-500 pl-2 pt-1 pr-2 pb-1 rounded font-bold'>Food</h3>
-                <p className='mx-4 text-center font-bold flex items-center'>Lunch with Friends</p>
+                <h3 className='bg-green-500 pl-2 pt-1 pr-2 pb-1 rounded font-bold cursor-default'>Food</h3>
+                <p className='mx-4 text-center font-bold flex items-center cursor-default'>Lunch with Friends</p>
             </div>
             <div className='flex items-center'>
                 <p className='font-bold text-red-500 mr-1 flex items-center'>1500</p>

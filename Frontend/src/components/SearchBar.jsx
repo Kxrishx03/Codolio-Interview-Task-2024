@@ -1,23 +1,27 @@
+import React from 'react';
 import SearchIcon from '@mui/icons-material/Search';
+import { useSelector } from 'react-redux';
 
 export function SearchBar() {
+    const lightTheme = useSelector((state) => state.themeKey);
+
     return (
-        <div className='flex items-center bg-neutral-200 w-10/12 lg:w-8/12  rounded mt-4'>
-            <div className='flex items-center w-6/12 rounded border bg-white p-2'>
+        <div className={`flex items-center w-10/12 lg:w-8/12 rounded mt-4 ${lightTheme ? 'bg-neutral-200' : 'bg-gray-800'}`}>
+            <div className={`flex items-center w-6/12 rounded border-none p-2 ${lightTheme ? 'bg-white' : 'bg-gray-600'}`}>
                 <input
                     type="text"
                     placeholder="Search by Title"
-                    className='flex-grow border-none outline-none bg-transparent '
+                    className={`flex-grow border-none outline-none ${lightTheme ? 'bg-transparent text-black' : 'bg-transparent text-white'}`}
                 />
-                <SearchIcon />
+                <SearchIcon className={lightTheme ? 'text-black' : 'text-white'} />
             </div>
             
-            <select className="p-2 bg-white rounded border w-2/12 ml-2">
+            <select className={`p-2 rounded border-none w-2/12 ml-2 ${lightTheme ? 'bg-white text-black' : 'bg-gray-600 text-white'}`}>
                 <option value="type" selected>Type</option>
                 <option value="income">Income</option>
                 <option value="expense">Expense</option>
             </select>
-            <select className="p-2 bg-white rounded border w-2/12 ml-2">
+            <select className={`p-2 rounded border-none w-2/12 ml-2 ${lightTheme ? 'bg-white text-black' : 'bg-gray-600 text-white'}`}>
                 <option value="Category" selected>Category</option>
                 <option value="Healthcare">Healthcare</option>
                 <option value="Shopping">Shopping</option>
@@ -26,9 +30,9 @@ export function SearchBar() {
                 <option value="Investment">Investment</option>
                 <option value="Entertainment">Entertainment</option>
                 <option value="Education">Education</option>
-                <option value="Transportaion">Transportaion</option>
+                <option value="Transportation">Transportation</option>
             </select>
-            <select className="p-2 bg-white rounded border w-2/12 ml-2">
+            <select className={`p-2 rounded border-none w-2/12 ml-2 ${lightTheme ? 'bg-white text-black' : 'bg-gray-600 text-white'}`}>
                 <option value="Currency" selected>Currency</option>
                 <option value="USD">US Dollar (USD)</option>
                 <option value="INR">Indian Rupee (INR)</option>
