@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { sampleTransactions } from '../utils/sampleData';
 
-// Initial state of the transactions
 const initialState = {
   transactions: sampleTransactions,
   status: 'idle', 
@@ -12,26 +11,25 @@ const transactionSlice = createSlice({
   name: 'transactions',
   initialState,
   reducers: {
-   
     addTransaction(state, action) {
       state.transactions.push(action.payload);
     },
-  
-    setLoading(state) {
-      state.status = false;
+    deleteTransaction(state, action) {
+      state.transactions = state.transactions.filter(transaction => transaction.id !== action.payload);
     },
-    
+    setLoading(state) {
+      state.status = 'loading';
+    },
     setError(state, action) {
-      state.status = true;
+      state.status = 'error';
       state.error = action.payload;
     },
-   
     setSuccess(state) {
-      state.status = true;
+      state.status = 'success';
     },
   },
 });
 
-export const { addTransaction, setLoading, setError, setSuccess } = transactionSlice.actions;
+export const { addTransaction, deleteTransaction, setLoading, setError, setSuccess } = transactionSlice.actions;
 
 export default transactionSlice.reducer;

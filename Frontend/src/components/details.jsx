@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../css/details.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { addTransaction, setLoading, setError, setSuccess } from "../redux/transactionSlice";
+import { addTransaction, deleteTransaction, setLoading, setError, setSuccess } from "../redux/transactionSlice";
 import { sampleTransactions } from '../utils/sampleData';
 
 
@@ -9,11 +9,9 @@ export default function Details({item}) {
     const lightTheme = useSelector((state) => state.themeKey);
     const dispatch = useDispatch();
     const { transaction } = useSelector((state) => state.transaction);
-    console.log(transaction);
+    console.log(sampleTransactions);
     
     const [income, setIncome] = useState({});
-    console.log(income)
-
     const [expense, setExpense] = useState({});
     const [flag1, setFlag1] = useState(false);
 
@@ -32,16 +30,22 @@ export default function Details({item}) {
 
     function handleIncomeSave(e) {
         e.preventDefault();
+        const newTransaction = {income, id: Date.now()};
+        console.log(newTransaction);
+        dispatch(addTransaction(newTransaction));
         document.getElementById('my_modal_2').closeModal()
         document.getElementById('my_modal_1').closeModal()
-        console.log(income);
+        
     }
 
     function handleExpenseSave(e) {
         e.preventDefault();
+        const newTransaction = {expense, id: Date.now()};
+        console.log(newTransaction);
+        dispatch(addTransaction(newTransaction));
         document.getElementById('my_modal_2').closeModal()
         document.getElementById('my_modal_1').closeModal()
-        console.log(income);
+       
     }
 
     function handleIncomeBtn() {
@@ -56,25 +60,10 @@ export default function Details({item}) {
         }
     }
 
-    useEffect(() => {
-        const fetchData = () => {
-            try {
-                dispatch(setLoading());
-                const transactionRes = income;
-                dispatch(addTransaction(transactionRes));
-                dispatch(setSuccess());
-            } catch (err) {
-                dispatch(setError(err.message));
-            }
-        };
-        fetchData();
-    }, [income, dispatch]);
-    
-    console.log(transaction)
-    // console.log(transaction);
-    // sampleTransactions.push({transaction});
-    // console.log(sampleTransactions);
-
+    const handleDelete = (id) => () => {
+        dispatch(deleteTransaction(id));
+    }; 
+    console.log(sampleTransactions);
     return (
         <>
             <div className={`details w-full h-full overflow-hidden ${lightTheme ? 'bg-neutral-200 text-black' : 'bg-gray-800 text-white'}`}>
@@ -96,8 +85,8 @@ export default function Details({item}) {
                             <label className="w-[10vw]">Category:</label>
                             <select className={`border-2 ${lightTheme ? 'bg-white border-black rounded' : 'bg-gray-800 border-white rounded'}`} name="category" value={income.category} onChange={handleIncome}>
                                 <option value="Salary">Salary</option>
-                                <option value="Food">Food</option>
-                                <option value="Transport">Transport</option>
+                                <option value="Bonus">Bonus</option>
+                                <option value="Rentals">Rentals Money</option>
                                 <option value="Other">Other</option>
                             </select>
                         </div>
@@ -124,10 +113,9 @@ export default function Details({item}) {
                         <div className="category flex pb-3 w-full">
                             <label className="w-[10vw]">Category:</label>
                             <select className={`border-2 ${lightTheme ? 'bg-white border-black rounded' : 'bg-gray-800 border-white rounded'}`} name="category" value={income.category} onChange={handleExpense}>
-                                <option value="Salary">Salary</option>
                                 <option value="Food">Food</option>
                                 <option value="Transport">Transport</option>
-                                <option value="Other">Other</option>
+                                <option value="Healthcare">Healthcare</option>
                             </select>
                         </div>
                         <div className="title flex pb-3 w-full">
